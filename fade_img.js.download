@@ -1,0 +1,31 @@
+window.addEventListener("load", function()
+{
+    for (let el of document.getElementsByClassName('add_fade_img'))
+    {
+        let img = new Image();
+
+        img.onload = function() 
+        {
+            if (el.tagName != "IMG")
+            {
+                let new_bg = `url("${el.getAttribute("img_src")}")`;
+
+                let old_bg = window.getComputedStyle(el).getPropertyValue("background-image");
+                if (old_bg != "none")
+                {
+                    new_bg = `${old_bg}, ${new_bg}`;
+                }
+
+                el.style.backgroundImage = new_bg;
+            }
+            else
+            {
+                el.src = el.getAttribute("img_src");
+            }
+
+            el.style.opacity = 1;
+        };
+
+        img.src = el.getAttribute("img_src");
+	}
+});

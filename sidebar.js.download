@@ -1,0 +1,31 @@
+var sidebar_btns;
+
+window.addEventListener("load", function()
+{
+    sidebar_btns = document.getElementsByClassName("sidebar_btn");
+
+    for (let section_num = 0; section_num < sections.length; section_num++)
+    {
+        sidebar_btns[section_num].addEventListener("click", function(ev)
+        {
+            goto_section(section_num);
+        });
+    }
+
+    let prev = -1;
+
+    window.addEventListener("section_change", function(ev)
+    {
+        let section_num = ev.detail.section_num;
+        
+        if (prev != section_num)
+        {
+            sidebar_btns[section_num].style.fill = "rgb(var(--cs-a))";
+
+            if (prev != -1)
+                sidebar_btns[prev].style.fill = "";
+
+            prev = section_num;
+        }
+    });
+});

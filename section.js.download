@@ -1,0 +1,71 @@
+var sections;
+
+window.addEventListener("load", function()
+{
+    sections = document.getElementsByClassName("section");
+
+    let url_section = get_url_param("section");
+    if (url_section != sections[get_section()].getAttribute("section_name"))
+    {
+        for (let index = 0; index < sections.length; index++)
+        {
+            if (url_section == sections[index].getAttribute("section_name"))
+            {
+                goto_section(index);
+                break;
+            }
+        }
+    }
+
+    let prev_section = -1;
+
+    this.setInterval(function() {
+        let section_num = get_section();
+
+        if (section_num !== null)
+        {
+            if (section_num != prev_section)
+            {
+                window.dispatchEvent(new CustomEvent("section_change",
+                {
+                    detail:
+                    {
+                        section_num: section_num
+                    }
+                }));
+
+                set_url_param("section", sections[section_num].getAttribute("section_name"), false);
+                // set_url_param("section", section_num, false);
+
+                prev_section = section_num;
+            }
+        }
+    }, 20);
+});
+
+function get_section()
+{
+    let center = (document.body.getBoundingClientRect().height + document.getElementById("content").offsetTop) / 2;
+
+    for (let index = 0; index < sections.length; index++)
+    {
+        let section_rect = sections[index].getBoundingClientRect();
+
+        if (section_rect.top <= center && section_rect.bottom >= center)
+        {
+            return index;
+        }
+    }
+
+    return null;
+}
+
+function goto_section(section_num)
+{
+    window.scroll(
+    {
+        top: sections[section_num].getBoundingClientRect().top + window.pageYOffset - document.getElementById("content").offsetTop,
+        left: 0,
+        behavior: "smooth"
+    });
+}

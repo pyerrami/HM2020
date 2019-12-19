@@ -1,0 +1,5 @@
+#section_home > img
+{
+    width: calc(var(--unit) * 8.5);
+    height: calc(var(--unit) * 8.5);
+}

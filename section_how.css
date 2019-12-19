@@ -1,0 +1,5 @@
+#section_how > .section_list > .section_diagram
+{   
+    max-width: calc(var(--unit) * 5);
+    max-height: calc(var(--unit) * 5);
+}

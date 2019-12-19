@@ -1,0 +1,86 @@
+*
+{
+	font-family: 'Source Sans Pro', sans-serif;
+}
+button
+{
+    padding: 0;
+    margin: 0;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+.design_btn
+{
+    user-select: none;
+    padding: calc(var(--unit) * 0.3) calc(var(--unit) * 1.5);
+    border-radius: 2px;
+    font-weight: bold;
+    font-size: calc(var(--unit) * 0.4);
+    letter-spacing: 2px;
+    color: rgba(var(--cs-base00));
+    background-color: rgba(var(--cs-a), 0.9);
+    cursor: pointer;
+    display: inline-block;
+    box-shadow: 0px 2px 5px rgba(var(--cs-base00), 0.5);
+    white-space: nowrap;
+    text-decoration: none;
+    margin: var(--unit);
+}
+
+h1
+{
+    font-size: calc(var(--unit) * 1.5);
+    margin: calc(var(--unit) * 0.25) var(--text-margin);
+}
+h2
+{
+    font-size: calc(var(--unit) * 1.25);
+    margin: calc(var(--unit) * 0.25) var(--text-margin);
+}
+h3
+{
+    font-size: calc(var(--unit) * 1);
+    margin: calc(var(--unit) * 0.25) var(--text-margin);
+}
+h4
+{
+    font-size: calc(var(--unit) * 0.75);
+    margin: calc(var(--unit) * 0.25) var(--text-margin);
+}
+h5
+{
+    font-size: calc(var(--unit) * 0.5);
+    margin: calc(var(--unit) * 0.25) var(--text-margin);
+}
+h6
+{
+    font-size: calc(var(--unit) * 0.4);
+    margin: calc(var(--unit) * 0.25) var(--text-margin);
+}
+p
+{
+    font-size: calc(var(--unit) * 0.5);
+    margin: calc(var(--unit) * 0.25) var(--text-margin);
+    line-height: calc(var(--unit) * 0.75);
+    max-width: calc(var(--unit) * 20);
+}
+br
+{
+    display: block;
+    content: "";
+    margin-top: calc(var(--unit) * 1);
+}
+a
+{
+    color: rgb(var(--cs-base0D));
+}
+hr
+{
+    border: 0;
+    clear: both;
+    display: block;
+    height: 1px;
+    background-color: rgba(var(--cs-base03), 0.3);
+    width: 100%;
+}

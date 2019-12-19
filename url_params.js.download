@@ -1,0 +1,74 @@
+window.addEventListener("load", function()
+{
+
+});
+
+function get_url_param(param_to_get)
+{
+    let params = window.location.href.split("?");
+    
+    if (params.length == 1)
+    {
+        return 0;
+    }
+
+    params = params[1].split("&");
+
+    for (let param of params)
+    {
+        param = param.split("=");
+
+        if (param[0] == param_to_get)
+            return param[1]
+    }
+
+    return null;
+}
+
+function set_url_param(target, value, push)
+{
+    let url = window.location.href.split("?");
+
+    let new_url = `${url[0]}`;
+
+    if (url.length == 1)
+    {
+        if (value)
+        {
+            new_url += `?${target}=${value}`
+        }
+    }
+    else
+    {
+        let params = url[1].split("&");
+        let delimeter = "?";
+
+        for (let param of params)
+        {
+            param = param.split("=");
+
+            if (param[0] == target)
+            {
+                if (value)
+                {
+                    new_url += `${delimeter}${target}=${value}`
+                }
+            }
+            else
+            {
+                new_url += `${delimeter}${param[0]}=${param[1]}`
+            }
+
+            delimeter = "&";
+        }
+    }
+
+    if (push)
+    {
+        window.history.pushState({}, "", new_url);
+    }
+    else
+    {
+        window.history.replaceState({}, "", new_url);
+    }
+}

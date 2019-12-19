@@ -1,0 +1,15 @@
+window.addEventListener("load", function()
+{
+    for (let el of document.getElementsByClassName("add_date_until"))
+    {
+        let now = new Date();
+        now.setHours(0, 0, 0, 0);
+
+        let parameters = el.getAttribute("date_until").split("-");
+        let target_date = new Date(parameters[0], parameters[1] - 1, parameters[2]);
+
+        let days = Math.floor((target_date - now) / 1000 / 60 / 60 / 24);
+
+        el.innerHTML = `${days} day${(days > 1) ? "s" : ""}`;
+    }
+});

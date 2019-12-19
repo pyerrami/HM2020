@@ -1,0 +1,33 @@
+window.addEventListener("load", function()
+{
+    let scroller_btn = document.getElementById("scroller_btn");
+    let scroller_btn_svg = scroller_btn.getElementsByTagName("svg")[0];
+
+    let dest_section_num = -1;
+
+    function update_scroller(current_section)
+    {
+        dest_section_num = (current_section == 0) ? 1 : 0;
+
+        if (dest_section_num == 0)
+        {
+            scroller_btn_svg.style.transform = "rotate(180deg)";
+        }
+        else
+        {
+            scroller_btn_svg.style.transform = "";
+        }
+    }
+
+    scroller_btn.addEventListener("click", function(ev)
+    {
+        goto_section(dest_section_num);
+    });
+
+    window.addEventListener("section_change", function(ev)
+    {
+        update_scroller(ev.detail.section_num);
+    });
+
+    update_scroller(get_section());
+});

@@ -1,0 +1,9 @@
+.add_fade_img
+{
+    opacity: 0;
+    transition: opacity 1s;
+    /* backface-visibility: hidden; */
+    /* box-shadow: 0 0 1px rgba(255,255,255,0); */
+    /* outline: 1px solid transparent; */
+    /* transform-style: preserve-3d; */
+}

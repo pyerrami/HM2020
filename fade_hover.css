@@ -1,0 +1,16 @@
+.add_fade_hover::after
+{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-color: rgb(var(--cs-base07));
+    opacity: 0;
+    transition: opacity 500ms;
+}
+.add_fade_hover:hover::after
+{
+    opacity: 0.1;
+}

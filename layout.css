@@ -1,0 +1,37 @@
+html, body
+{
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+}
+@media screen and (orientation: landscape)
+{
+    body
+    {
+        --unit: 40px;
+        --text-margin: var(--unit);
+        margin-left: var(--unit);
+        width: calc(100% - var(--unit));
+    }
+}
+@media screen and (orientation: portrait)
+{
+    body
+    {
+        --unit: 40px;
+        --text-margin: var(--unit);
+        /* margin-top: var(--unit); */
+        height: calc(100% - var(--unit));
+    }
+    #content
+    {
+        margin-bottom: var(--unit);
+    }
+}
+#content
+{
+    padding: none;
+    margin: none;
+    overflow-x: auto;
+}

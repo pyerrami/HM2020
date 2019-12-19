@@ -1,0 +1,83 @@
+window.addEventListener("load", function()
+{
+    for (let el of document.getElementsByClassName("add_ink_drop"))
+    {
+		el.addEventListener("mousedown", function(ev) { ink_drop_start(ev); }, false);
+        el.addEventListener("click", function(ev) { ink_drop_end(); });
+        el.addEventListener("mouseleave", function(ev) { ink_drop_end(); });
+
+        if (el.tagName == "BUTTON")
+        {
+            el.addEventListener("keydown", function(ev)
+            {
+                if (ev.keyCode == 13)
+                {
+                    ink_drop_start(ev);
+                    // ink_drop_end();
+                }
+            }, false);
+        }
+    }
+
+    let ink_drop_on = false;
+
+    function ink_drop_start(ev, el = ev.currentTarget)
+    {
+        if (ink_drop_on)
+        {
+            ink_drop_end();
+        }
+
+        ink_drop_on = true;
+
+        let x, y;
+        if (ev.type != "keydown")
+        {
+            x = ev.clientX - el.getBoundingClientRect().left;
+            y = ev.clientY - el.getBoundingClientRect().top;
+        }
+        else
+        {
+            x = (el.getBoundingClientRect().width) / 2;
+            y = (el.getBoundingClientRect().height) / 2;
+        }
+
+        let w = (el.offsetWidth - x < x) ? x : el.offsetWidth - x;
+        let h = (el.offsetHeight - y < y) ? y : el.offsetHeight - y;
+
+        let r = Math.sqrt(w * w + h * h);
+
+		let ink_drop = document.createElement("div");
+        ink_drop.classList.add("ink_drop", "ink_drop_on");
+
+	//  inkDrop.style.width = `${radius*2}px`;
+	// 	inkDrop.style.height = `${radius*2}px`;
+	// 	inkDrop.style.left = `${x-radius}px`;
+    // 	inkDrop.style.top = `${y-radius}px`;
+
+		ink_drop.style.left = `${x}px`;
+		ink_drop.style.top = `${y}px`;
+
+		el.appendChild(ink_drop);
+
+	/*	setTimeout(() => { inkDrop.style.transform = 'scale(1)'; }, 0);*/
+		setTimeout(() => {
+			ink_drop.style.width = `${r * 2}px`;
+			ink_drop.style.height = `${r * 2}px`;
+		}, 0);
+    }
+
+    function ink_drop_end()
+    {
+        if (ink_drop_on)
+        {
+            ink_drop_on = false;
+
+            let ink_drop = document.getElementsByClassName("ink_drop_on")[0];
+
+			ink_drop.classList.replace("ink_drop_on", "ink_drop_off");
+
+            setTimeout(() => { ink_drop.remove(); }, 700);
+		}
+    }
+});
